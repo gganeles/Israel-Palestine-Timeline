@@ -1,0 +1,46 @@
+[
+    {
+        "id":1,
+        "date":"wednesday",
+        "headline":"Israel is Cool",
+        "sources":[
+            {
+                "sourceName":"NYT",
+                "summery":"this is a news summery",
+                "url":"url"
+            },
+            {
+                "sourceName":"WP",
+                "summery":"this is a nother summery",
+                "url":"url"
+            },
+            {
+                "sourceName":"News",
+                "summery":"this is a nigger summery",
+                "url":"url"
+            }
+        ]
+    },
+    {
+        "id":2,
+        "date":"thursday",
+        "headline":"Israel is Cool",
+        "sources":[
+            {
+                "sourceName":"NYT",
+                "summery":"this is a summery",
+                "url":"url"
+            },
+            {
+                "sourceName":"WP",
+                "summery":"this is a summery",
+                "url":"url"
+            },
+            {
+                "sourceName":"News",
+                "summery":"this is a summery",
+                "url":"url"
+            }
+        ]
+    }
+]
