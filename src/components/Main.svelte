@@ -1,13 +1,22 @@
 <script>
     import Card from "./Card.svelte"
     import eventCards from "../../public/data.json"
+    import { flip } from 'svelte/animate';
+    import {quintInOut} from 'svelte/easing';
+	import {fly} from 'svelte/transition'
+	let pushed = '';
+	$: pushed = pushed 
 </script>
 
 <main>
-    <h1>Israel Palestine Timeline</h1>
+    <h1 class='text-slate-900'>Israel Palestine Timeline</h1>
     <ul role="list" class="flex flex-col gap-16">
-        {#each eventCards as eventCard}
-            <Card eventObj={eventCard}/>
+        {#each eventCards as eventCard(eventCard.id)}
+			{#key pushed}
+				<div transition:fly>
+					<Card eventObj={eventCard} summery={pushed}/>
+				</div>
+			{/key}
         {/each}
     </ul>
 </main>
@@ -19,7 +28,6 @@
 		padding: 1rem;
 		width: 800px;
 		max-width: calc(100% - 2rem);
-		color: slategrey;
 		font-size: 20px;
 		line-height: 1.6;
 	}

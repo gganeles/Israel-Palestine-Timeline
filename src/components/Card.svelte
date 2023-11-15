@@ -2,12 +2,14 @@
 	export let eventObj = '';
 	export let href = '';
 	let summery = '';
-	let hovered = false;
+	let hoverable = true;
+
+	import { fly, slide } from 'svelte/transition';
 
 </script>
 
-<li class='bg-white rounded-lg drop-shadow-lg'>
-		<div class="bg-white rounded-t-lg text-slate-900 p-4 pb-8 drop-shadow">
+<li>
+		<div class="bg-white rounded-t-lg text-slate-900 p-4 pb-8 drop-shadow-md">
 			<p>
 				{eventObj.date}
 			</p>
@@ -16,18 +18,19 @@
 			</h2>
 		</div>
 		<ul on:mouseleave={()=>{
-			summery=''
-			}} class:rounde={summery!=''} class="drop-shadow rounded-b-lg bg-slate-100 text-xl text-slate-900 font-bold flex flex-row justify-start divide-x divide-slate-500" on:mouseleave={()=>summery=''}>
+			if (hoverable) {summery=''}
+			}} class:rounde={summery!=''} class="front drop-shadow-md rounded-b-lg bg-slate-100 text-xl text-slate-900 font-bold flex flex-row justify-start divide-x divide-slate-500" on:mouseleave={()=>summery=''}>
 			{#each eventObj.sources as source}
-				<a on:mouseenter={()=>{
-					summery=source.summery;
-					}} href={href} class='flex w-20 h-16 hover:bg-slate-300 items-center justify-center'>
+				<a href="#" on:click={()=>{summery=source.summery; hoverable=!hoverable}} 
+					on:mouseenter={()=>{
+						hoverable ?summery=source.summery:''
+						}} class='sfront flex w-20 h-16 hover:bg-slate-300 items-center justify-center'>
 					{source.sourceName}
 				</a>
 			{/each}
 		</ul>
 		{#if summery} 
-			<div class="p-4 text-slate-900">
+			<div transition:slide={{y:-10, duration:500}} class="drop-shadow bg-white rounded-b-lg p-4 text-slate-900 shadowd">
 				{summery}
 			</div>
 		{/if}
@@ -37,5 +40,8 @@
 
 	.rounde {
 		border-radius: 0%;
+	}
+	.front {
+		z-index: 10;
 	}
 </style>
