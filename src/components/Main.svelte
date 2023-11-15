@@ -5,23 +5,19 @@
     import { flip } from 'svelte/animate';
     import {quintInOut} from 'svelte/easing';
 	import {fly} from 'svelte/transition'
-	let pushed = '';
-	$: pushed = pushed 
 </script>
 
 <main class='w-full'>
 	<div class='flex flex-col h-screen'>
 		<div class='flex flex-row justify-start'>
 			<Timeline/>
-			<h1 class='w-11/12 mt-8 text-slate-900'>Israel Palestine Timeline</h1>
+			<h1 class='w-11/12 mt-8 pb-96 text-slate-900'>Israel Palestine Timeline</h1>
 		</div>
 		<div role="list" class="flex flex-col w-full">
 			{#each eventCards as eventCard(eventCard.id)}
-				{#key pushed}
-					<div>
-						<Card eventObj={eventCard} summery={pushed}/>
-					</div>
-				{/key}
+				<div>
+					<Card eventObj={eventCard}/>
+				</div>
 			{/each}
 		</div>
 		<div class='h-full flex'>

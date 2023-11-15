@@ -18,44 +18,39 @@
 				<div class='triangle-br'></div>
 				<div class='triangle-tr'></div>
 			</div> 
-		<div class='w-full flex flex-col'>
-		<div class="bg-white rounded-t-lg text-slate-900 p-4 pb-8">
-			<p>
-				{eventObj.date}
-			</p>
-			<h2 class='font-bold text-3xl underline'>
-				{eventObj.headline}
-			</h2>
-		</div>
-		<ul class:rounde class="overflow-hidden hover:overflow-x-scroll front rounded-b-lg bg-slate-100 text-xl text-slate-900 font-bold flex flex-row justify-start divide-x divide-slate-500" on:mouseleave={()=>summery=''}>
-			{#each eventObj.sources as source}
-				<a href="#" on:focusin={()=>{summery=source.summery;rounde=true}} on:focusout={()=>{summery=''}}
-					on:mouseenter={()=>{summery=source.summery;rounde=true}} class='p-2 flex max-w-30 h-16 hover:bg-slate-300 items-center justify-center'>
-					{source.sourceName}
-				</a>
-			{/each}
-		</ul>
-		{#if summery} 
-			<div transition:slide={{duration:300}} class="bg-white rounded-b-lg p-4 text-slate-900" on:outroend={()=>rounde=false}>
-				{summery}
+		<div class='w-full flex flex-col rounded-lg bg-white overflow-hidden'>
+			<div class="bg-white text-slate-900 p-4 pb-8">
+				<p>
+					{eventObj.date}
+				</p>
+				<h2 class='font-bold text-3xl underline'>
+					{eventObj.headline}
+				</h2>
 			</div>
-		{/if}
+			<ul class:rounde class="overflow-hidden hover:overflow-x-scroll bg-slate-100 flex flex-row justify-start divide-x divide-slate-500" on:mouseleave={()=>summery=''}>
+				{#each eventObj.sources as source}
+					<a href="#" on:focusin={()=>{summery=source.summery}} on:focusout={()=>{summery=''}}
+						on:mouseenter={()=>{summery=source.summery}} class='flex hover:bg-slate-300 items-center justify-center'>
+						<div class='text-xl font-bold text-slate-900 h-16 w-16 flex justify-center items-center'>
+							{source.sourceName}
+						</div>
+					</a>
+				{/each}
+			</ul>
+			{#if summery} 
+				<div transition:slide={{duration:300}} class="p-4 text-slate-900">
+					{summery}
+				</div>
+			{/if}
+		</div>
 	</div>
-	</div>
-	</div>
+</div>
 </div>
 
 <style>
 	.rectangle {
 		width:10px;
 		height: 100%;
-	}
-
-	.rounde {
-		border-radius: 0%;
-	}
-	.front {
-		z-index: 10;
 	}
 
 	::-webkit-scrollbar {
