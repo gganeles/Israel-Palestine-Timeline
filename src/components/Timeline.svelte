@@ -1,4 +1,4 @@
-<div class='flex justify-center w-1/6'>
+<div class='flex justify-center w-1/12'>
     <div class='bg-black rectangle'></div>
 </div>
 

@@ -13,7 +13,7 @@
 	<div class='flex flex-col h-screen'>
 		<div class='flex flex-row justify-start'>
 			<Timeline/>
-			<h1 class='w-5/6 mt-8 text-slate-900'>Israel Palestine Timeline</h1>
+			<h1 class='w-11/12 mt-8 text-slate-900'>Israel Palestine Timeline</h1>
 		</div>
 		<div role="list" class="flex flex-col w-full">
 			{#each eventCards as eventCard(eventCard.id)}
@@ -26,7 +26,7 @@
 		</div>
 		<div class='h-full flex'>
 			<Timeline/>
-			<div class='w-5/6'></div>
+			<div class='w-11/12'></div>
 		</div>
 	</div>
 </main>
