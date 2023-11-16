@@ -3,10 +3,11 @@
 	export let href = "";
 	let summery = "";
 	let title = "";
-	let rounde = false;
-	import { slide } from "svelte/transition";
+    import { slide } from "svelte/transition";
 	import dayjs from "dayjs"
+    import { onMount } from "svelte";
 	const dateFormat = 'hh:mm a'
+	let hoverFlag = false;
 </script>
 
 <div class="flex flex-row w-full">
@@ -43,11 +44,11 @@
 					</p>
 				</div>
 				<ul
-					class:rounde
 					class="overflow-hidden hover:overflow-x-auto bg-slate-100 flex flex-row justify-start divide-x divide-slate-400"
 				>
 					{#each eventObj.articles as source}
-						<a
+						<!-- svelte-ignore a11y-click-events-have-key-events -->
+						<div
 							href={source.url}
 							on:focusin={() => {
 								summery = source.analysis;
@@ -57,10 +58,24 @@
 								summery = "";
 								title = "";
 							}}
-							on:mouseenter={() => {
+							on:click={()=>{
+								if (source.clicked) {
+									source.clicked=false
+									summery = ''
+								} else {
+									for (let i in eventObj.articles) {
+										eventObj.articles[i]['clicked'] = false
+									}
+									summery = source.analysis
+									title = source.title
+									source.clicked = true
+								}
+							}}
+						    on:mouseenter={() => {
 								summery = source.analysis;
 								title = source.title;
 							}}
+
 							class="flex hover:bg-slate-300 items-center justify-center"
 						>
 							<div
@@ -68,7 +83,7 @@
 							>
 								{source.sourceName}
 							</div>
-						</a>		
+						</div>		
 					{/each}
 				</ul>
 				{#if summery}
