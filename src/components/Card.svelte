@@ -27,7 +27,7 @@
 					{eventObj.headline}
 				</h2>
 			</div>
-			<ul class:rounde class="overflow-hidden hover:overflow-x-scroll bg-slate-100 flex flex-row justify-start divide-x divide-slate-500" on:mouseleave={()=>summery=''}>
+			<ul class:rounde class="overflow-hidden hover:overflow-x-auto bg-slate-100 flex flex-row justify-start divide-x divide-slate-500" on:mouseleave={()=>summery=''}>
 				{#each eventObj.sources as source}
 					<a href="#" on:focusin={()=>{summery=source.summery}} on:focusout={()=>{summery=''}}
 						on:mouseenter={()=>{summery=source.summery}} class='flex hover:bg-slate-300 items-center justify-center'>
