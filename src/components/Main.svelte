@@ -15,7 +15,10 @@
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 
 <main class='w-full'>
-	<header class="flex flex-row bg-white h-16 w-full border-b-black">
+	<header class="fixed flex flex-row bg-white h-16 w-full border-b-black drop-shadow-md">
+		<div class='w-1/12 left-0 z-10 flex justify-center'>
+			<div class='rectangle bg-black z-10'/>
+		</div>
 		<div on:mouseleave={()=>languageSelect=false} class='absolute right-0 flex flex-col bg-white'>
 			<div on:mouseenter={()=>languageSelect=true} class='pl-4 h-16 flex text-center items-center hover:bg-slate-300'>
 				Language
@@ -29,7 +32,7 @@
 			{/if}
 		</div>
 	</header>
-	<div class='flex flex-col h-full'>
+	<div class='pt-16 flex flex-col h-full'>
 		<Timeline>
 			<h1 class='mt-8 pb-24 text-slate-900'>Israel Palestine Timeline in {language}</h1>
 		</Timeline>
@@ -41,7 +44,7 @@
 							{dayjs(eventCard.date).format(dateFormat)}
 						</div>
 					</Timeline>
-				{:else if (eventCards['events'][eventCard.eventId-1] && eventCards['events'][eventCard.eventId] && regex.exec/(eventCards['events'][eventCard.eventId-1].date)[0] != regex.exec(eventCards['events'][eventCard.eventId].date)[0])}
+				{:else if (eventCards['events'][eventCard.eventId-1] && eventCards['events'][eventCard.eventId] && regex.exec(eventCards['events'][eventCard.eventId-1].date)[0] != regex.exec(eventCards['events'][eventCard.eventId].date)[0])}
 					<Timeline>
 						<div class='pl-4 pb-4 text-slate-800'>
 							{dayjs(eventCard.date).format(dateFormat)}
@@ -59,6 +62,11 @@
 
 
 <style>
+	.rectangle {
+		width: 10px;
+		height: 100%;
+	}
+
 
 	main {
 		font-size: 20px;
