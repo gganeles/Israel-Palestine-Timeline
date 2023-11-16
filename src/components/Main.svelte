@@ -1,38 +1,65 @@
 <script>
     import Card from "./Card.svelte"
-    import eventCards from "../../public/data.json"
+    import eventCards from "../../public/event.json"
 	import Timeline from "./Timeline.svelte";
-    import { flip } from 'svelte/animate';
-    import {quintInOut} from 'svelte/easing';
-	import {fly} from 'svelte/transition'
+	import {slide} from "svelte/transition"
+	import dayjs from "dayjs"
+	const dateFormat = 'MMMM DD, YYYY'
+	const regex = /\d{2}(?=T\d{2}:\d{2}:\d{2}\.\d{3}Z)/
+	let languageSelect = false;
+	let language='English';
+	const pickLanguage = (e) => {
+		language=e.target.innerText
+	}
 </script>
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 
 <main class='w-full'>
-	<div class='flex flex-col h-screen'>
-		<div class='flex flex-row justify-start'>
-			<Timeline/>
-			<h1 class='w-11/12 mt-8 pb-96 text-slate-900'>Israel Palestine Timeline</h1>
+	<header class="flex flex-row bg-white h-16 w-full border-b-black">
+		<div on:mouseleave={()=>languageSelect=false} class='absolute right-0 flex flex-col bg-white'>
+			<div on:mouseenter={()=>languageSelect=true} class='pl-4 h-16 flex text-center items-center hover:bg-slate-300'>
+				Language
+			</div>
+			{#if languageSelect}
+				{#each ['English','Arabic','Hebrew'] as lang}
+					<div on:click={pickLanguage} on:keypress={(e)=>e.code==='ENTER'&&pickLanguage(e)} transition:slide|global class='pl-4 h-16 flex text-center items-center hover:bg-slate-300'>
+						{lang}
+					</div>
+				{/each}
+			{/if}
 		</div>
+	</header>
+	<div class='flex flex-col h-full'>
+		<Timeline>
+			<h1 class='mt-8 pb-24 text-slate-900'>Israel Palestine Timeline in {language}</h1>
+		</Timeline>
 		<div role="list" class="flex flex-col w-full">
-			{#each eventCards as eventCard(eventCard.id)}
+			{#each eventCards['events'] as eventCard}
+				{#if (eventCard.eventId===0)}
+					<Timeline>
+						<div class='p-4 text-slate-800'>
+							{dayjs(eventCard.date).format(dateFormat)}
+						</div>
+					</Timeline>
+				{:else if (eventCards['events'][eventCard.eventId-1] && eventCards['events'][eventCard.eventId] && regex.exec/(eventCards['events'][eventCard.eventId-1].date)[0] != regex.exec(eventCards['events'][eventCard.eventId].date)[0])}
+					<Timeline>
+						<div class='pl-4 pb-4 text-slate-800'>
+							{dayjs(eventCard.date).format(dateFormat)}
+						</div>
+					</Timeline>
+				{/if}
 				<div>
 					<Card eventObj={eventCard}/>
 				</div>
 			{/each}
 		</div>
-		<div class='h-full flex'>
-			<Timeline/>
-			<div class='w-11/12'></div>
-		</div>
+		<Timeline/>
 	</div>
 </main>
 
 
 <style>
-	.rectangle {
-		width: 10px;
-		height: 100%;
-	}
+
 	main {
 		font-size: 20px;
 		line-height: 1.6;

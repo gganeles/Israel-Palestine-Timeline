@@ -1,10 +1,41 @@
 {
     "events": [
         {
-            "eventId": 1,
+            "eventId": 0,
             "title": "the generated headline",
             "date": "2023-11-15T18:24:50.000Z",
             "lastUpdated": "2023-11-15T18:24:50.000Z",
+            "description": "This is the factual description of the event.",
+            "articles": [
+                {
+                    "articleId": "ASDASD",
+                    "title": "translated to selected language (cookie and default from geolocation?)",
+                    "originalTitle": "שלום",
+                    "analysis": "What's special about this article? bias??",
+                    "lang": "he-IL",
+                    "date": "2023-11-15T18:24:50.000Z",
+                    "sourceName": "The Source",
+                    "url": "https://example.com/",
+                    "bias": "center"
+                },
+                {
+                    "articleId": "GNIOA",
+                    "title": "also translated to selected language (cookie and default from geolocation?)",
+                    "originalTitle": null,
+                    "analysis": "This article is in the primary language, and doesn't need to be translated",
+                    "lang": "en-US",
+                    "date": "2023-11-15T18:24:50.000Z",
+                    "sourceName": "The Second Source",
+                    "url": "https://example.com/",
+                    "bias": "leanLeft"
+                }
+            ]
+        },
+        {
+            "eventId": 1,
+            "title": "the generated headline",
+            "date": "2023-11-14T18:24:50.000Z",
+            "lastUpdated": "2023-11-14T18:24:50.000Z",
             "description": "This is the factual description of the event.",
             "articles": [
                 {
