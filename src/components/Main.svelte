@@ -15,12 +15,12 @@
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 
 <main class='w-full'>
-	<header class="fixed flex flex-row bg-white h-16 w-full border-b-black drop-shadow-md">
+	<header class="fixed flex flex-row bg-white h-16 w-full border-b-black drop-shadow-md z-50">
 		<div class='w-1/12 left-0 z-10 flex justify-center'>
 			<div class='rectangle bg-black z-10'/>
 		</div>
 		<div on:mouseleave={()=>languageSelect=false} class='absolute right-0 flex flex-col bg-white'>
-			<div on:mouseenter={()=>languageSelect=true} class='pl-4 h-16 flex text-center items-center hover:bg-slate-300'>
+			<div on:mouseenter={()=>languageSelect=true} class='px-4 h-16 flex text-center items-center hover:bg-slate-300'>
 				Language
 			</div>
 			{#if languageSelect}
