@@ -22,7 +22,12 @@
 	<div
 		role="aria-card"
 		class="w-11/12 pb-10 pr-10 drop-shadow-lg"
-		on:mouseleave={() => (summery = "")}
+		on:mouseleave={() => {									
+			for (let i in eventObj.articles) {
+				eventObj.articles[i]['clicked'] = false
+			}
+			summery = ""
+			}}
 	>
 		<div class="flex flex-row justify-start">
 			<div class="w-4 translate-y-7">
