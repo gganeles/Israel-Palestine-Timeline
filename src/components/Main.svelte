@@ -34,7 +34,7 @@
 	</header>
 	<div class='pt-16 flex flex-col h-full'>
 		<Timeline>
-			<h1 class='mt-8 pb-24 text-slate-900'>Israel Palestine Timeline in {language}</h1>
+			<h1 class='mt-8 text-slate-900'>Israel Palestine Timeline in {language}</h1>
 		</Timeline>
 		<div role="list" class="flex flex-col w-full">
 			{#each eventCards['events'] as eventCard}
@@ -72,18 +72,12 @@
 		font-size: 20px;
 		line-height: 1.6;
 	}
+
 	h1 {
 		font-size: 4rem;
 		font-weight: 700;
 		line-height: 1;
 		text-align: center;
 		margin-bottom: 1em;
-	}
-	.gibby {
-		background-color: white;
-		border: 4px solid black;
-		transform: translateY(50px);
-		border-radius: 50%;
-		z-index: 1;
 	}
 </style>

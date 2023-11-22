@@ -1,6 +1,5 @@
 <script>
 	export let eventObj = "";
-	export let href = "";
 	let summery = "";
 	let title = "";
 	let url = '';
@@ -12,9 +11,10 @@
 <div class="flex flex-row w-full">
 	<div class="w-1/12 flex justify-center">
 		<div
-			class="absolute w-6 h-6 border-solid border-blue mt-10 bg-black rounded-full"
+			style="border: 2px solid #f1f5f9;"
+			class="absolute w-6 h-6 mt-10 bg-black rounded-full"
 		/>
-		<div class="bg-black rectangle" />
+		<div class="bg-black rectangle"/>
 	</div>
 	<!-- svelte-ignore a11y-unknown-role -->
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
