@@ -8,8 +8,12 @@ import cloudflare from "@astrojs/cloudflare";
 export default defineConfig({
   integrations: [tailwind(), svelte()],
   output: "server",
-    adapter: cloudflare({ mode: "directory",
-                          routes: {
-                              strategy: "exclude",
-                          }})
+  adapter: cloudflare({ mode: "directory",
+                        functionPerRoute: true,
+                        routes: {
+                          strategy: "auto",
+                          include: [
+                            '/api/timeline'
+                          ],
+                        }})
 }); 
